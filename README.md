@@ -188,6 +188,7 @@ A nota deve ser um número inteiro entre **1 e 5**.
 ```bash
 git clone 
 ```
+https://github.com/AndreRoch369/balsas-experience-api.git
 
 Entre na pasta:
 
@@ -311,7 +312,6 @@ A API também está disponível online:
 https://balsas-experience-api-098u.onrender.com
 ```
 
-> A URL será adicionada após a publicação da aplicação.
 
 # Repositório
 
