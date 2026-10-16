@@ -186,7 +186,7 @@ A nota deve ser um número inteiro entre **1 e 5**.
 # 1. Clonar o repositório
 
 ```bash
-git clone COLOQUE_AQUI_A_URL_DO_REPOSITORIO
+git clone 
 ```
 
 Entre na pasta:
@@ -308,7 +308,7 @@ A API utiliza códigos HTTP de acordo com o resultado das operações, incluindo
 A API também está disponível online:
 
 ```text
-COLOQUE_AQUI_A_URL_DA_API_PUBLICADA
+https://balsas-experience-api-098u.onrender.com
 ```
 
 > A URL será adicionada após a publicação da aplicação.
