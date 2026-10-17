@@ -1,0 +1,121 @@
+@baseUrl = https://balsas-experience-api-098u.onrender.com
+
+### TESTE 1 - Health
+# Esperado: 200 OK
+GET {{baseUrl}}/health
+
+
+### TESTE 2 - Listar todas as atrações
+# Esperado: 200 OK
+GET {{baseUrl}}/atracoes
+
+
+### TESTE 3 - Buscar atração existente
+# ID 14 corresponde à Cachoeira das Três Marias no banco atual
+# Esperado: 200 OK com avaliacoes, notaMedia e totalAvaliacoes
+GET {{baseUrl}}/atracoes/14
+
+
+### TESTE 4 - Buscar atração inexistente
+# Esperado: 404 Not Found
+GET {{baseUrl}}/atracoes/9999
+
+
+### TESTE 5 - Filtrar por categoria
+# Esperado: 200 OK com 3 atrações
+GET {{baseUrl}}/atracoes?categoria=Natureza%20e%20Aventura
+
+
+### TESTE 6 - Filtrar pela tag cachoeira
+# Esperado: 200 OK com 2 atrações
+GET {{baseUrl}}/atracoes?tag=cachoeira
+
+
+### TESTE 7 - Buscar pelo termo rio
+# Esperado: 200 OK
+GET {{baseUrl}}/atracoes?q=rio
+
+
+### TESTE 8 - Listar categorias
+# Esperado: 200 OK com 3 categorias
+GET {{baseUrl}}/categorias
+
+
+### TESTE 9 - Criar atração temporária
+# Esperado: 201 Created
+# IMPORTANTE: ao executar novamente, anote o ID retornado.
+POST {{baseUrl}}/atracoes
+Content-Type: application/json
+
+{
+  "nome": "Parque de Lazer Teste",
+  "descricao": "Atração temporária criada para os testes da API.",
+  "categoria": "Lazer",
+  "cidade": "Balsas",
+  "estado": "MA",
+  "distanciaCentroKm": 3,
+  "tags": ["lazer", "familia"]
+}
+
+
+### TESTE 10 - Tentar criar atração com dados inválidos
+# Esperado: 400 Bad Request
+POST {{baseUrl}}/atracoes
+Content-Type: application/json
+
+{
+  "nome": ""
+}
+
+
+### TESTE 11 - Atualizar atração
+# ATENÇÃO: substitua 18 pelo ID criado no Teste 9 se executar novamente.
+# Esperado: 200 OK e substituição das tags
+PUT {{baseUrl}}/atracoes/18
+Content-Type: application/json
+
+{
+  "nome": "Parque de Lazer Teste Atualizado",
+  "descricao": "Atração temporária atualizada durante os testes da API.",
+  "categoria": "Lazer",
+  "cidade": "Balsas",
+  "estado": "MA",
+  "distanciaCentroKm": 4,
+  "tags": ["teste-api", "atualizado"]
+}
+
+
+### TESTE 12 - Criar avaliação válida
+# ATENÇÃO: substitua 18 pelo ID criado no Teste 9 se executar novamente.
+# Esperado: 201 Created
+POST {{baseUrl}}/atracoes/18/avaliacoes
+Content-Type: application/json
+
+{
+  "visitante": "Teste API",
+  "nota": 5,
+  "comentario": "Avaliação criada durante os testes da API."
+}
+
+
+### TESTE 13 - Tentar criar avaliação com nota inválida
+# Esperado: 400 Bad Request
+POST {{baseUrl}}/atracoes/18/avaliacoes
+Content-Type: application/json
+
+{
+  "visitante": "Teste API",
+  "nota": 7,
+  "comentario": "Esta avaliação deve ser recusada."
+}
+
+
+### TESTE 14 - Excluir atração temporária
+# Esperado: 204 No Content
+# A avaliação vinculada também deve ser excluída em cascata.
+DELETE {{baseUrl}}/atracoes/18
+
+
+### TESTE 15 - Tentar excluir novamente
+# Esperado: 404 Not Found
+DELETE {{baseUrl}}/atracoes/18
